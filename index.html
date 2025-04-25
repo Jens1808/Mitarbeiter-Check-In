@@ -8,24 +8,34 @@
         body { 
             font-family: Arial, sans-serif; 
             text-align: center; 
-            padding: 20px; 
-            background-color: #f9f9f9;
+            padding: 20px;
+            background: url('/mnt/data/9D162093-7D79-4EDD-9DD0-CEF884CD6725_1_201_a.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            background-color: rgba(255, 255, 255, 0.8);
+            background-blend-mode: lighten;
         }
-        img {
-            width: 120px;
-            margin-bottom: 20px;
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 12px;
         }
         h1 { 
             margin-bottom: 30px; 
+            font-size: 32px;
             color: #004aad;
         }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
         button { 
-            display: block; 
-            margin: 10px auto; 
-            padding: 15px 30px; 
+            padding: 15px 20px; 
             font-size: 18px; 
             border: none; 
-            border-radius: 25px; 
+            border-radius: 20px; 
             cursor: pointer; 
             background-color: #ffd700;
             color: #004aad;
@@ -39,28 +49,31 @@
     </style>
 </head>
 <body>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Merkur_Sonne_Logo.svg/512px-Merkur_Sonne_Logo.svg.png" alt="Merkur Sonne Logo">
+<div class="container">
     <h1>Willkommen im Merkur Casino / Köln 6</h1>
 
-    <button onclick="checkIn('Bea')">Bea</button>
-    <button onclick="checkIn('Kay')">Kay</button>
-    <button onclick="checkIn('Andi')">Andi</button>
-    <button onclick="checkIn('Elena')">Elena</button>
-    <button onclick="checkIn('Elke')">Elke</button>
-    <button onclick="checkIn('Valesca')">Valesca</button>
-    <button onclick="checkIn('Simone')">Simone</button>
-    <button onclick="checkIn('Christina')">Christina</button>
-    <button onclick="checkIn('Ipek')">Ipek</button>
-    <button onclick="checkIn('Jens')">Jens</button>
+    <div class="grid">
+        <button onclick="checkIn('Bea')">Bea</button>
+        <button onclick="checkIn('Kay')">Kay</button>
+        <button onclick="checkIn('Andi')">Andi</button>
+        <button onclick="checkIn('Elena')">Elena</button>
+        <button onclick="checkIn('Elke')">Elke</button>
+        <button onclick="checkIn('Valesca')">Valesca</button>
+        <button onclick="checkIn('Simone')">Simone</button>
+        <button onclick="checkIn('Christina')">Christina</button>
+        <button onclick="checkIn('Ipek')">Ipek</button>
+        <button onclick="checkIn('Jens')">Jens</button>
+    </div>
+</div>
 
-    <script>
-        function checkIn(name) {
-            const standort = "Köln6";
-            const url = `https://script.google.com/macros/s/AKfycbyAOitrMSRRDTBV6RnzPdHcINLF2Li422ThfXM18deahbd8jHEsY1_-q4AJNLcpfXab3A/exec?name=${encodeURIComponent(name)}&standort=${encodeURIComponent(standort)}`;
-            fetch(url)
-              .then(response => alert('✅ Check-In erfolgreich für ' + name))
-              .catch(error => alert('❌ Fehler beim Check-In'));
-        }
-    </script>
+<script>
+    function checkIn(name) {
+        const standort = "Köln6";
+        const url = `https://script.google.com/macros/s/AKfycbyAOitrMSRRDTBV6RnzPdHcINLF2Li422ThfXM18deahbd8jHEsY1_-q4AJNLcpfXab3A/exec?name=${encodeURIComponent(name)}&standort=${encodeURIComponent(standort)}`;
+        fetch(url)
+          .then(response => alert('✅ Check-In erfolgreich für ' + name))
+          .catch(error => alert('❌ Fehler beim Check-In'));
+    }
+</script>
 </body>
 </html>
