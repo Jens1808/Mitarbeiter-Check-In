@@ -3,25 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check-In Mitarbeiter</title>
+    <title>Merkur Casino Check-In</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        h1 { margin-bottom: 30px; }
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding: 20px; 
+            background-color: #f9f9f9;
+        }
+        img {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+        h1 { 
+            margin-bottom: 30px; 
+            color: #004aad;
+        }
         button { 
             display: block; 
             margin: 10px auto; 
             padding: 15px 30px; 
             font-size: 18px; 
             border: none; 
-            border-radius: 8px; 
+            border-radius: 25px; 
             cursor: pointer; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background-color: #ffd700;
+            color: #004aad;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
         }
-        button:hover { background-color: #f0f0f0; }
+        button:hover { 
+            background-color: #ffc400; 
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
-    <h1>Mitarbeiter Check-In</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Merkur_Sonne_Logo.svg/512px-Merkur_Sonne_Logo.svg.png" alt="Merkur Sonne Logo">
+    <h1>Willkommen im Merkur Casino / Köln 6</h1>
 
     <button onclick="checkIn('Bea')">Bea</button>
     <button onclick="checkIn('Kay')">Kay</button>
