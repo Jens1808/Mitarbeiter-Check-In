@@ -66,6 +66,14 @@
 </div>
 
 <script>
+      const standort = "Köln6";
+  const localNow = new Date();
+  const isoUTC   = localNow.toISOString();
+  const offsetMin = localNow.getTimezoneOffset(); // z. B. -120  (CEST)
+
+  console.log("💻  Local-Zeit      :", localNow.toString());
+  console.log("🌐  ISO-UTC        :", isoUTC);
+  console.log("↔︎   Offset (min)   :", offsetMin);
     // Liefert zusätzlich das aktuelle Datum/Zeit im ISO‑8601‑Format an das Apps‑Script
     function checkIn(name) {
         const standort = "Köln6";
