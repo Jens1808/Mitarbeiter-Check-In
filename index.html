@@ -68,7 +68,7 @@
 <script>
     function checkIn(name) {
         const standort = "Köln6";
-        const url = `https://script.google.com/macros/s/AKfycbyAOitrMSRRDTBV6RnzPdHcINLF2Li422ThfXM18deahbd8jHEsY1_-q4AJNLcpfXab3A/exec?name=${encodeURIComponent(name)}&standort=${encodeURIComponent(standort)}`;
+        const url = `https://script.google.com/macros/s/AKfycbzLAKvcjGybW75MJta6--X7rtop04zmFeNwZ90YKccV5FmI8Alv4mGUc362sGKcgAjc7w/exec?name=${encodeURIComponent(name)}&standort=${encodeURIComponent(standort)}`;
         fetch(url)
           .then(response => alert('✅ Check-In erfolgreich für ' + name))
           .catch(error => alert('❌ Fehler beim Check-In'));
