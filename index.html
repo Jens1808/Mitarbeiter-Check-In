@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merkur Casino Check-In</title>
+    <title>Merkur Casino Check‑In</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,22 +13,22 @@
             background-size: cover;
         }
         .container {
-            background-color: rgba(255, 255, 255, 0.85);
+            background-color: rgba(255, 255, 255, 0.88);
             padding: 20px;
             border-radius: 12px;
             max-width: 800px;
             margin: 0 auto;
+            box-shadow: 0 6px 18px rgba(0,0,0,.25);
         }
         h1 {
             margin-bottom: 30px;
-            font-size: 36px;
+            font-size: 34px;
             color: #004aad;
         }
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 15px;
-            margin-top: 20px;
         }
         button {
             padding: 15px 20px;
@@ -39,7 +39,7 @@
             background-color: #ffd700;
             color: #004aad;
             font-weight: bold;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: background-color .3s, transform .2s;
         }
         button:hover {
             background-color: #ffc400;
@@ -49,7 +49,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>Willkommen im Merkur Casino / Köln 6</h1>
+    <h1>Willkommen im Merkur Casino / Köln 6</h1>
 
     <div class="grid">
         <button onclick="checkIn('Bea')">Bea</button>
@@ -66,24 +66,27 @@
 </div>
 
 <script>
-      const standort = "Köln6";
-  const localNow = new Date();
-  const isoUTC   = localNow.toISOString();
-  const offsetMin = localNow.getTimezoneOffset(); // z. B. -120  (CEST)
+/**
+ * Sendet UTC‑Zeitstempel *plus* Browser‑Offset → Server kann 100 % korrekt nach Europe/Berlin umrechnen.
+ */
+function checkIn(name) {
+  const standort   = "Köln6";
 
-  console.log("💻  Local-Zeit      :", localNow.toString());
-  console.log("🌐  ISO-UTC        :", isoUTC);
-  console.log("↔︎   Offset (min)   :", offsetMin);
-    // Liefert zusätzlich das aktuelle Datum/Zeit im ISO‑8601‑Format an das Apps‑Script
-    function checkIn(name) {
-        const standort = "Köln6";
-        const timestamp = new Date().toISOString(); // z. B. 2025‑04‑27T13:45:30.123Z
-        const url = `https://script.google.com/macros/s/AKfycbzLAKvcjGybW75MJta6--X7rtop04zmFeNwZ90YKccV5FmI8Alv4mGUc362sGKcgAjc7w/exec?name=${encodeURIComponent(name)}&standort=${encodeURIComponent(standort)}&datetime=${encodeURIComponent(timestamp)}`;
+  const now        = new Date();            // lokale Zeit im Browser
+  const isoUTC     = now.toISOString();     // z. B. 2025‑04‑27T15:45:49.227Z (immer UTC!)
+  const offsetMin  = now.getTimezoneOffset(); // ‑120 = UTC+2 (CEST)
 
-        fetch(url)
-            .then(() => alert('✅ Check‑In erfolgreich für ' + name))
-            .catch(() => alert('❌ Fehler beim Check‑In'));
-    }
+  const url =
+    "https://script.google.com/macros/s/AKfycbzLAKvcjGybW75MJta6--X7rtop04zmFeNwZ90YKccV5FmI8Alv4mGUc362sGKcgAjc7w/exec" +
+    `?name=${encodeURIComponent(name)}` +
+    `&standort=${encodeURIComponent(standort)}` +
+    `&datetime=${encodeURIComponent(isoUTC)}` +
+    `&offset=${offsetMin}`;                 // Offset mitsenden
+
+  fetch(url)
+    .then(() => alert(`✅ Check‑In erfolgreich für ${name}`))
+    .catch(() => alert(`❌ Fehler beim Check‑In`));
+}
 </script>
 </body>
 </html>
