@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merkur Casino Check-In</title>
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            text-align: center; 
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
             padding: 20px;
             background: url('https://i.ibb.co/tMQC5kF8/Filiale-K6.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -19,8 +19,8 @@
             max-width: 800px;
             margin: 0 auto;
         }
-        h1 { 
-            margin-bottom: 30px; 
+        h1 {
+            margin-bottom: 30px;
             font-size: 36px;
             color: #004aad;
         }
@@ -30,19 +30,19 @@
             gap: 15px;
             margin-top: 20px;
         }
-        button { 
-            padding: 15px 20px; 
-            font-size: 18px; 
-            border: none; 
-            border-radius: 20px; 
-            cursor: pointer; 
+        button {
+            padding: 15px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
             background-color: #ffd700;
             color: #004aad;
             font-weight: bold;
             transition: background-color 0.3s, transform 0.2s;
         }
-        button:hover { 
-            background-color: #ffc400; 
+        button:hover {
+            background-color: #ffc400;
             transform: scale(1.05);
         }
     </style>
@@ -66,12 +66,15 @@
 </div>
 
 <script>
+    // Liefert zusätzlich das aktuelle Datum/Zeit im ISO‑8601‑Format an das Apps‑Script
     function checkIn(name) {
         const standort = "Köln6";
-        const url = `https://script.google.com/macros/s/AKfycbzLAKvcjGybW75MJta6--X7rtop04zmFeNwZ90YKccV5FmI8Alv4mGUc362sGKcgAjc7w/exec?name=${encodeURIComponent(name)}&standort=${encodeURIComponent(standort)}`;
+        const timestamp = new Date().toISOString(); // z. B. 2025‑04‑27T13:45:30.123Z
+        const url = `https://script.google.com/macros/s/AKfycbzLAKvcjGybW75MJta6--X7rtop04zmFeNwZ90YKccV5FmI8Alv4mGUc362sGKcgAjc7w/exec?name=${encodeURIComponent(name)}&standort=${encodeURIComponent(standort)}&datetime=${encodeURIComponent(timestamp)}`;
+
         fetch(url)
-          .then(response => alert('✅ Check-In erfolgreich für ' + name))
-          .catch(error => alert('❌ Fehler beim Check-In'));
+            .then(() => alert('✅ Check‑In erfolgreich für ' + name))
+            .catch(() => alert('❌ Fehler beim Check‑In'));
     }
 </script>
 </body>
