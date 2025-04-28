@@ -76,16 +76,13 @@ function checkIn(name) {
   const isoUTC     = now.toISOString();     // z. B. 2025‑04‑27T15:45:49.227Z (immer UTC!)
   const offsetMin  = now.getTimezoneOffset(); // ‑120 = UTC+2 (CEST)
   
-    console.log("💻  Local-Zeit      :", localNow.toString());
    console.log("🌐  ISO-UTC        :", isoUTC);
-   console.log("↔︎   Offset (min)   :", offsetMin);
     
   const url =
     "https://script.google.com/macros/s/AKfycbzLAKvcjGybW75MJta6--X7rtop04zmFeNwZ90YKccV5FmI8Alv4mGUc362sGKcgAjc7w/exec" +
     `?name=${encodeURIComponent(name)}` +
     `&standort=${encodeURIComponent(standort)}` +
-    `&datetime=${encodeURIComponent(isoUTC)}` +
-    `&offset=${offsetMin}`;                 // Offset mitsenden
+    `&datetime=${encodeURIComponent(isoUTC)}`;
 
   fetch(url)
     .then(() => alert(`✅ Check‑In erfolgreich für ${name}`))
