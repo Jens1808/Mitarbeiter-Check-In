@@ -69,19 +69,27 @@
     function checkIn(name) {
         const standort = "Köln6";
         const url = `https://script.google.com/macros/s/AKfycbzrA51IDxEM2hlfCEtWF66dRdbaneRzrSC6DZ-wMTNGPFS512l3N55Q27qBqQVRB6iEtA/exec?name=${encodeURIComponent(name)}&standort=${encodeURIComponent(standort)}`;
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          if (data.status !== 200) {
-            alert(data.message);
-          } else {
-            alert('✅ Check-In erfolgreich für ' + name);
-          }
-        })
-        .catch(err => {
-          console.error(err);
-          alert('❌ Fehler beim Check-In: ' + err.message);
-        });
+  fetch(url)
+    .then(res => res.text())
+    .then(text => {
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (e) {
+        console.error("Ungültige Server-Antwort:", text);
+        alert("❌ Ungültige Antwort vom Server.");
+        return;
+      }
+      if (data.status !== 200) {
+        alert(data.message);  
+      } else {
+        alert("✅ Check-In erfolgreich für " + name);
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert("❌ Fehler beim Check-In: " + err.message);
+    });
      }
 </script>
 </body>
