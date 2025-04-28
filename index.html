@@ -66,28 +66,13 @@
 </div>
 
 <script>
-/**
- * Sendet UTC‑Zeitstempel *plus* Browser‑Offset → Server kann 100 % korrekt nach Europe/Berlin umrechnen.
- */
-function checkIn(name) {
-  const standort   = "Köln6";
-
-  const now        = new Date();            // lokale Zeit im Browser
-  const isoUTC     = now.toISOString();     // z. B. 2025‑04‑27T15:45:49.227Z (immer UTC!)
-  const offsetMin  = now.getTimezoneOffset(); // ‑120 = UTC+2 (CEST)
-  
-   console.log("🌐  ISO-UTC        :", isoUTC);
-    
-  const url =
-    "https://script.google.com/macros/s/AKfycbwLrv5hBVZRM4EmI5twtCUyI8Yc5c8waSdnmay3vafqlMItsLkD2A0iXiQpLS1D1oohUg/exec" +
-    `?name=${encodeURIComponent(name)}` +
-    `&standort=${encodeURIComponent(standort)}` +
-    `&datetime=${encodeURIComponent(isoUTC)}`;
-
-  fetch(url, { mode: 'no-cors' })
-    .then(() => alert(`✅ Check‑In erfolgreich für ${name}`))
-    .catch(() => alert(`❌ Fehler beim Check‑In`));
-}
+    function checkIn(name) {
+         const standort = "Köln6";
+         const url = `https://script.google.com/macros/s/AKfycbypfRBxv-Qo1L4rCXDSv7YlUGhAaZJVB04MvgqrK1JEuFxwfAOQ4ZxM5MeMmjhqpX91/exec?name=${encodeURIComponent(name)}&standort=${encodeURIComponent(standort)}`;
+         fetch(url)
+           .then(response => alert('✅ Check-In erfolgreich für ' + name))
+           .catch(error => alert('❌ Fehler beim Check-In'));
+     }
 </script>
 </body>
 </html>
