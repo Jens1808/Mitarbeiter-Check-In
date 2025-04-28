@@ -84,7 +84,7 @@ function checkIn(name) {
     `&standort=${encodeURIComponent(standort)}` +
     `&datetime=${encodeURIComponent(isoUTC)}`;
 
-  fetch(url)
+  fetch(url + queryString, { mode: 'no-cors' })
     .then(() => alert(`✅ Check‑In erfolgreich für ${name}`))
     .catch(() => alert(`❌ Fehler beim Check‑In`));
 }
