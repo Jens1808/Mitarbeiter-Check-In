@@ -75,7 +75,7 @@ function checkIn(name) {
   const now        = new Date();            // lokale Zeit im Browser
   const isoUTC     = now.toISOString();     // z. B. 2025‑04‑27T15:45:49.227Z (immer UTC!)
   const offsetMin  = now.getTimezoneOffset(); // ‑120 = UTC+2 (CEST)
-
+  console.log(isoUTC);
   const url =
     "https://script.google.com/macros/s/AKfycbzLAKvcjGybW75MJta6--X7rtop04zmFeNwZ90YKccV5FmI8Alv4mGUc362sGKcgAjc7w/exec" +
     `?name=${encodeURIComponent(name)}` +
